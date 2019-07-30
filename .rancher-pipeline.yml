@@ -4,12 +4,12 @@ stages:
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
-      tag: test1test2/sample:v3
+      tag: test/sample:v3
       pushRemote: true
-      registry: index.docker.io
+      registry: 172.16.193.103
 - name: 部署
   steps:
   - applyYamlConfig:
-      path: ./tomcat.yaml
+      path: ./tomcat7.yaml
 timeout: 60
 notification: {}
