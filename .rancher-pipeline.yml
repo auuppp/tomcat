@@ -7,6 +7,8 @@ stages:
       tag: test/sample:v3
       pushRemote: true
       registry: 172.16.193.103
+    env:
+      PLUGIN_INSECURE: "true"  
 - name: bushu
   steps:
   - applyYamlConfig:
