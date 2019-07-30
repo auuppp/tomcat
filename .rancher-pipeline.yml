@@ -1,0 +1,15 @@
+stages:
+- name: build
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: 172.16.193.103/test/sample:v3
+      pushRemote: true
+      registry: 172.16.193.103
+- name: bushu
+  steps:
+  - applyYamlConfig:
+      path: ./tomcat7.yaml
+timeout: 60
+notification: {}
