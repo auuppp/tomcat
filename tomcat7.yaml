@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  name: tomcat-test7
+  labels: 
+    app: tomcat-test7
+spec:
+  replicas: 2 
+  selector:
+    matchLabels:
+      app: tomcat-test7
+  template:
+    metadata:
+      labels:
+        app: tomcat-test7
+    spec:
+      containers:
+      - name: tomcat-test7
+        image: test1test2/sample:v1
+        resources:
+          requests:
+            cpu: 200m
+            memory: 100Mi
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8443
+        - containerPort: 8080
+---
+#------service---------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: tomcat-test7
+  namespace: default
+  labels:
+    name: tomcat-test7
+spec:
+  type: NodePort
+  ports:
+  - port: 8443
+    targetPort: 8443
+    nodePort: 30010
+  ports:
+  - port: 8080 
+    targetPort: 8080
+    nodePort: 30020
+  selector:
+    app: tomcat-test7
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: tomcat-test-web
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - host: tomcat.test2.k8s
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: tomcat-test7
+          servicePort: 8080
+
