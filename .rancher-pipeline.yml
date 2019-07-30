@@ -5,6 +5,7 @@ stages:
       dockerfilePath: ./Dockerfile
       buildContext: .
       tag: test/sample:v3
+      pushRemote: true
       registry: 172.16.193.103
 - name: bushu
   steps:
