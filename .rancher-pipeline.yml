@@ -4,8 +4,7 @@ stages:
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
-      tag: 172.16.193.103/test/sample:v3
-      pushRemote: true
+      tag: test/sample:v3
       registry: 172.16.193.103
 - name: bushu
   steps:
