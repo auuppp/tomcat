@@ -1,2 +1,2 @@
-FROM test1test2/sample:tomcat7
+FROM 172.16.193.103/test/tomcat:7
 COPY webapps/ /usr/local/tomcat/webapps/
