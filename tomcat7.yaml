@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: tomcat-test7
-        image: test1test2/sample:v1
+        image: 172.16.193.103/test/sample:v3
         resources:
           requests:
             cpu: 200m
@@ -48,21 +48,21 @@ spec:
   selector:
     app: tomcat-test7
 
----
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: tomcat-test-web
-  namespace: default
-  annotations:
-    kubernetes.io/ingress.class: traefik
-spec:
-  rules:
-  - host: tomcat.test2.k8s
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: tomcat-test7
-          servicePort: 8080
+# ---
+# apiVersion: extensions/v1beta1
+# kind: Ingress
+# metadata:
+#   name: tomcat-test-web
+#   namespace: default
+#   annotations:
+#     kubernetes.io/ingress.class: traefik
+# spec:
+#   rules:
+#   - host: tomcat.test2.k8s
+#     http:
+#       paths:
+#       - path: /
+#         backend:
+#           serviceName: tomcat-test7
+#           servicePort: 8080
 
